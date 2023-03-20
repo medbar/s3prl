@@ -179,10 +179,11 @@ def _download(filepath: Path, url, refresh: bool, new_enough_secs: float = 2.0):
                 _download_url_to_file_requests(url, filepath)
 
     logger.info(f"Using URL's local file: {filepath}")
-    try:
-        lock_file.unlink()
-    except FileNotFoundError:
-        pass
+    # Issue https://github.com/s3prl/s3prl/issues/468
+    # try:
+    #     lock_file.unlink()
+    # except FileNotFoundError:
+    #     pass
 
 
 def _urls_to_filepaths(*args, refresh=False, download: bool = True):
